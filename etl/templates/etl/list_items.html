@@ -1,0 +1,19 @@
+<html>
+<head>
+    <title>Imported data items</title>
+</head>
+<body>
+<h1>Imported data items</h1>
+<a href="{% url 'manual_import' %}">Import items now</a>
+
+{% if data_items %}
+    <ul>
+        {% for item in data_items %}
+            <li>{{item.name}}</li>
+        {% endfor %}
+    </ul>
+{% else %}
+    <p>No data items imported yet</p>
+{% endif %}
+</body>
+</html>
