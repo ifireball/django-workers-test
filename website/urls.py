@@ -20,5 +20,6 @@ import etl.views
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', etl.views.list_items, name="list_items"),
-    path('manual_import', etl.views.manual_import, name="manual_import")
+    path('manual_import', etl.views.manual_import, name="manual_import"),
+    path('clear_items', etl.views.clear_items, name="clear_items"),
 ]

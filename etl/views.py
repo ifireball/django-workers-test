@@ -4,7 +4,7 @@ import logging
 from django.db import IntegrityError
 from django.shortcuts import render, redirect
 from .models import DataItem
-
+from .tasks import import_items
 
 logger = logging.getLogger(f"django.app.{__name__}")
 
@@ -14,18 +14,12 @@ def list_items(request):
 
 
 def manual_import(request):
-    raw_item_file = Path('raw_items.txt')
-    logger.info("Importing data items from file: %s", str(raw_item_file.absolute()))
-    try:
-        with raw_item_file.open() as f:
-            for line in f:
-                item_name = line.strip()
-                logger.info("Seeing raw data item: `%s`", item_name)
-                try:
-                    DataItem(name=item_name).save()
-                except IntegrityError:
-                    logger.error("Not importing item `%s`, because it probably already in the database", item_name)
-    except FileNotFoundError:
-        logger.error("Raw data items file not found")
+    logger.info("Launching import task")
+    import_items()
     return redirect('list_items')
 
+
+def clear_items(request):
+    logger.info("Clearing all items")
+    DataItem.objects.all().delete()
+    return redirect('list_items')
