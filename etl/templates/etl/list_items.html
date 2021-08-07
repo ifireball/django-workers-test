@@ -1,11 +1,15 @@
+<!doctype html>
 {% load bootstrap5 %}
 <html>
 <head>
-    <title>Imported data items</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     {% bootstrap_css %}
+
+    <title>Imported data items</title>
 </head>
 <body>
-<div class="container">
+<div class="container-fluid">
     <h1>Imported data items</h1>
     <a class="btn btn-primary" href="{% url 'manual_import' %}">Import items now</a>
     <a class="btn btn-danger" href="{% url 'clear_items' %}">Clear all items</a>
