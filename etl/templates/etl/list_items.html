@@ -1,5 +1,7 @@
 <!doctype html>
 {% load bootstrap5 %}
+
+
 <html>
 <head>
     <meta charset="utf-8">
@@ -7,22 +9,101 @@
     {% bootstrap_css %}
 
     <title>Imported data items</title>
+    <style type="text/css">
+        .all-screen {
+            left: 0;
+            top: 0;
+            bottom: 0;
+            right: 0;
+            position: absolute;
+        }
+        .full-height {
+            height: 100%
+        }
+    </style>
 </head>
-<body>
-<div class="container-fluid">
-    <h1>Imported data items</h1>
-    <a class="btn btn-primary" href="{% url 'manual_import' %}">Import items now</a>
-    <a class="btn btn-danger" href="{% url 'clear_items' %}">Clear all items</a>
+<body class="overflow-hidden">
+<div class="container-fluid all-screen">
+    <div class="row full-height">
+        <div class="col-12 col-xl-4 full-height">
+            {% include "pseudo-nav.inc.html" with name="imported" title="Imported data items" menu_name="view" %}
+            <a class="btn btn-primary" href="{% url 'manual_import' %}">Import items now</a>
+            <a class="btn btn-danger" href="{% url 'clear_items' %}">Clear all items</a>
 
-    {% if data_items %}
-        <ul>
-            {% for item in data_items %}
-                <li>{{item.name}}</li>
+            {% if data_items %}
+                <ul>
+                    {% for item in data_items %}
+                        <li>{{item.name}}</li>
+                    {% endfor %}
+                </ul>
+            {% else %}
+                <p>No data items imported yet</p>
+            {% endif %}
+        </div>
+        <div class="col-12 col-xl-4 full-height">
+            {% include "pseudo-nav.inc.html" with name="pending" title="Pending Tasks" menu_name="view" %}
+            {% if pending_tasks %}
+                <ul>
+                    {% for task in pending_tasks %}
+                        <li>{{task}}</li>
+                    {% endfor %}
+                </ul>
+            {% else %}
+                <p>No pending tasks found</p>
+            {% endif %}
+        </div>
+        <div class="col-12 col-xl-4 full-height">
+            {% include "pseudo-nav.inc.html" with name="scheduled" title="Scheduled Tasks" menu_name="view" %}
+            {% if scheduled_tasks %}
+                <ul>
+                    {% for task in scheduled_tasks %}
+                        <li>{{task}}</li>
+                    {% endfor %}
+                </ul>
+            {% else %}
+                <p>No scheduled tasks found</p>
+            {% endif %}
+        </div>
+        <div class="col-12 full-height">
+            {% include "pseudo-nav.inc.html" with name="results" title="All Task Results" menu_name="view" %}
+            {% for task_key, is_error, task_results in all_task_results %}
+                <div class="card mb-3 {{is_error|yesno:'border-danger,'}}">
+                    <div class="card-header">
+                        <button type="button" class="btn-close float-end" aria-label="Close"></button>
+                        {{task_key}}
+                    </div>
+                    <div class="card-body {{is_error|yesno:'text-danger,'}}">
+                        <p class="card-text">({{task_results}}</p>
+                    </div>
+                </div>
+            {% empty %}
+                <p>No task results found</p>
             {% endfor %}
-        </ul>
-    {% else %}
-        <p>No data items imported yet</p>
-    {% endif %}
+        </div>
+        <div class="col-12 full-height">
+            <nav class="navbar navbar-dark bg-dark">
+                <div class="container">
+                    <a class="navbar-brand" name="view">View</a>
+                    <div class="navbar-collapse collapse show">
+                        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                            <li class="nav-item">
+                              <a class="nav-link" href="#imported">Imported data items</a>
+                            </li>
+                            <li class="nav-item">
+                              <a class="nav-link" href="#pending">Pending tasks</a>
+                            </li>
+                            <li class="nav-item">
+                              <a class="nav-link" href="#scheduled">Scheduled tasks</a>
+                            </li>
+                            <li class="nav-item">
+                              <a class="nav-link" href="#results">All Task Results</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </nav>
+        </div>
+    </div>
 </div>
 </body>
 </html>
