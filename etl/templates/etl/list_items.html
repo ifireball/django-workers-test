@@ -1,20 +1,24 @@
+{% load bootstrap5 %}
 <html>
 <head>
     <title>Imported data items</title>
+    {% bootstrap_css %}
 </head>
 <body>
-<h1>Imported data items</h1>
-<a href="{% url 'manual_import' %}">Import items now</a>
-<a href="{% url 'clear_items' %}">Clear all items</a>
+<div class="container">
+    <h1>Imported data items</h1>
+    <a class="btn btn-primary" href="{% url 'manual_import' %}">Import items now</a>
+    <a class="btn btn-danger" href="{% url 'clear_items' %}">Clear all items</a>
 
-{% if data_items %}
-    <ul>
-        {% for item in data_items %}
-            <li>{{item.name}}</li>
-        {% endfor %}
-    </ul>
-{% else %}
-    <p>No data items imported yet</p>
-{% endif %}
+    {% if data_items %}
+        <ul>
+            {% for item in data_items %}
+                <li>{{item.name}}</li>
+            {% endfor %}
+        </ul>
+    {% else %}
+        <p>No data items imported yet</p>
+    {% endif %}
+</div>
 </body>
 </html>
