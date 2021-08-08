@@ -1,14 +1,6 @@
-<!doctype html>
-{% load bootstrap5 %}
-
-
-<html style="scroll-behavior: auto;">
-<head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    {% bootstrap_css %}
-
-    <title>Imported data items</title>
+{% extends "bootstrap_base.html" %}
+{% block title %}Imported data items{% endblock %}
+{% block head %}
     <style type="text/css">
         .all-screen {
             left: 0;
@@ -20,9 +12,12 @@
         .full-height {
             height: 100%
         }
+        :root { scroll-behavior: auto; }
+        body { overflow: hidden; }
     </style>
-</head>
-<body class="overflow-hidden">
+{% endblock head %}
+
+{% block body %}
 <div class="container-fluid all-screen">
     <div class="row full-height">
         <div class="col-12 col-xl-4 full-height" id="imported">
@@ -105,5 +100,4 @@
         </div>
     </div>
 </div>
-</body>
-</html>
+{% endblock body %}

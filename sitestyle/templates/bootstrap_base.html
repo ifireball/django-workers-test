@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+{% load bootstrap5 %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    {% bootstrap_css %}
+
+    <title>{% block title %}Untitled{% endblock %}</title>
+    {% block head %}{% endblock %}
+</head>
+<body class="{% block body-class %}{% endblock %}">
+{% block body %}{% endblock %}
+</body>
+</html>

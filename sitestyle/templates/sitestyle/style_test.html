@@ -1,0 +1,38 @@
+{% extends "bootstrap_base.html" %}
+{% load static %}
+{% block title %}Imported data items{% endblock %}
+{% block head %}
+    <link href="{% static 'sitestyle.css' %}" rel="stylesheet">
+    <style type="text/css">
+        div#blue {
+            background-color: lightblue;
+        }
+    </style>
+{% endblock head %}
+
+{% block body-class %}viewport{% endblock %}
+{% block body %}
+    <div class="window">
+        <nav class="responsive" id="blue-nav">
+            <div class="nav-menu" id="blue-nav-menu">
+                <div class="nav-menu-head">
+                    Menu
+                    <a class="nav-close">close</a>
+                </div>
+                <ul class="nav-menu-items">
+                    <li class="nav-menu-item"><a href="#blue">Blue</a></li>
+                    <li class="nav-menu-item"><a href="#green">Green</a></li>
+                </ul>
+            </div>
+        </nav>
+        <div class="screen" id="blue">
+            <nav class="responsive">
+                <div class="nav-head">
+                    <a class="nav-menu-button" href="#blue-nav-menu">Menu</a>
+                    <a class="nav-title">Navigation test</a>
+                </div>
+            </nav>
+            <h1>Blue</h1>
+        </div>
+    </div>
+{% endblock body %}

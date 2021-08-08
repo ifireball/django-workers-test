@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'huey.contrib.djhuey',
     'bootstrap5',
+    'sitestyle',
     'etl',
 ]
 

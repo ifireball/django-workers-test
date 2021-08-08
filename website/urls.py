@@ -16,10 +16,12 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 import etl.views
+import sitestyle.views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', etl.views.list_items, name="list_items"),
     path('manual_import', etl.views.manual_import, name="manual_import"),
     path('clear_items', etl.views.clear_items, name="clear_items"),
+    path('style_test', sitestyle.views.style_test, name="style_test"),
 ]
