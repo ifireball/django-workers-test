@@ -2,7 +2,7 @@
 {% load bootstrap5 %}
 
 
-<html>
+<html style="scroll-behavior: auto;">
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -25,8 +25,8 @@
 <body class="overflow-hidden">
 <div class="container-fluid all-screen">
     <div class="row full-height">
-        <div class="col-12 col-xl-4 full-height">
-            {% include "pseudo-nav.inc.html" with name="imported" title="Imported data items" menu_name="view" %}
+        <div class="col-12 col-xl-4 full-height" id="imported">
+            {% include "pseudo-nav.inc.html" with title="Imported data items" menu_name="view" %}
             <a class="btn btn-primary" href="{% url 'manual_import' %}">Import items now</a>
             <a class="btn btn-danger" href="{% url 'clear_items' %}">Clear all items</a>
 
@@ -40,8 +40,8 @@
                 <p>No data items imported yet</p>
             {% endif %}
         </div>
-        <div class="col-12 col-xl-4 full-height">
-            {% include "pseudo-nav.inc.html" with name="pending" title="Pending Tasks" menu_name="view" %}
+        <div class="col-12 col-xl-4 full-height" id="pending">
+            {% include "pseudo-nav.inc.html" with title="Pending Tasks" menu_name="view" %}
             {% if pending_tasks %}
                 <ul>
                     {% for task in pending_tasks %}
@@ -52,8 +52,8 @@
                 <p>No pending tasks found</p>
             {% endif %}
         </div>
-        <div class="col-12 col-xl-4 full-height">
-            {% include "pseudo-nav.inc.html" with name="scheduled" title="Scheduled Tasks" menu_name="view" %}
+        <div class="col-12 col-xl-4 full-height" id="scheduled">
+            {% include "pseudo-nav.inc.html" with title="Scheduled Tasks" menu_name="view" %}
             {% if scheduled_tasks %}
                 <ul>
                     {% for task in scheduled_tasks %}
@@ -64,8 +64,8 @@
                 <p>No scheduled tasks found</p>
             {% endif %}
         </div>
-        <div class="col-12 full-height">
-            {% include "pseudo-nav.inc.html" with name="results" title="All Task Results" menu_name="view" %}
+        <div class="col-12 full-height" id="results">
+            {% include "pseudo-nav.inc.html" with title="All Task Results" menu_name="view" %}
             {% for task_key, is_error, task_results in all_task_results %}
                 <div class="card mb-3 {{is_error|yesno:'border-danger,'}}">
                     <div class="card-header">
@@ -80,10 +80,10 @@
                 <p>No task results found</p>
             {% endfor %}
         </div>
-        <div class="col-12 full-height">
+        <div class="col-12 full-height" id="view">
             <nav class="navbar navbar-dark bg-dark">
                 <div class="container">
-                    <a class="navbar-brand" name="view">View</a>
+                    <a class="navbar-brand">View</a>
                     <div class="navbar-collapse collapse show">
                         <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                             <li class="nav-item">
