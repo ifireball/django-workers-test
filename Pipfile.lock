@@ -73,11 +73,12 @@
         },
         "soupsieve": {
             "hashes": [
-                "sha256:052774848f448cf19c7e959adf5566904d525f33a3f8b6ba6f6f8f26ec7de0cc",
-                "sha256:c2c1c2d44f158cdbddab7824a9af8c4f83c76b1e23e049479aa432feb6c4c23b"
+                "sha256:e121fd02e975c695e4e9e8774a5ee35d74714b59307868dcc5319ad2d9e3328e",
+                "sha256:e7e6b0769c8f51ed59acab6e994b00621096cfb1c640a7509295987388fbaf65"
             ],
-            "markers": "python_version >= '3.0'",
-            "version": "==2.2.1"
+            "index": "pypi",
+            "markers": "python_version >= '3.9'",
+            "version": "==2.8.4"
         },
         "sqlparse": {
             "hashes": [
